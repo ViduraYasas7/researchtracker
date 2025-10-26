@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ResearchProjectService from '../services/ResearchProjectService';
 import './ProjectList.css';
 
 function ProjectList() {
+    const navigate = useNavigate();
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -147,13 +149,13 @@ function ProjectList() {
                                 <td>{project.budget ? `$${project.budget.toLocaleString()}` : 'N/A'}</td>
                                 <td className="actions">
                                     <button 
-                                        onClick={() => window.location.href = `/view/${project.id}`}
+                                        onClick={() => navigate(`/view/${project.id}`)}
                                         className="view-btn"
                                     >
                                         View
                                     </button>
                                     <button 
-                                        onClick={() => window.location.href = `/edit/${project.id}`}
+                                        onClick={() => navigate(`/edit/${project.id}`)}
                                         className="edit-btn"
                                     >
                                         Edit
